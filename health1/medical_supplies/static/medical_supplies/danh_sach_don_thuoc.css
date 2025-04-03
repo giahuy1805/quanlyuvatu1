@@ -1,0 +1,85 @@
+/* Toàn bộ trang */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #f8f9fa, #e9ecef); /* Nền sáng */
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container chính */
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Bảng */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Danh sách thuốc */
+ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+ul li {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}

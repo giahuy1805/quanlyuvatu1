@@ -1,0 +1,22 @@
+<!-- filepath: d:\hoctap\pythonweb\health1\medical_supplies\templates\medical_supplies\xoa_thuoc.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'medical_supplies/thuoc.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xóa Thuốc</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Xóa Thuốc</h1>
+        <p>Bạn có chắc chắn muốn xóa thuốc "{{ thuoc.ten_thuoc }}" không?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <a href="{% url 'danh_sach_thuoc' %}" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+</body>
+</html>

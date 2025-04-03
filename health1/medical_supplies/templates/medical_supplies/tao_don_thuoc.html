@@ -1,0 +1,184 @@
+<!-- filepath: d:\hoctap\pythonweb\health1\medical_supplies\templates\medical_supplies\tao_don_thuoc.html -->
+{% extends 'medical_supplies/base.html' %}
+
+{% block title %}Tạo Đơn Thuốc{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Tạo Đơn Thuốc</h1>
+    <form method="post" id="don-thuoc-form">
+        {% csrf_token %}
+        
+        <!-- Thông tin bệnh nhân -->
+        <div class="section">
+            <h2>Thông Tin Bệnh Nhân</h2>
+            <div class="form-group">
+                <label for="ten_benh_nhan">Tên Bệnh Nhân</label>
+                {{ don_thuoc_form.ten_benh_nhan }}
+            </div>
+            <div class="form-group">
+                <label for="ghi_chu">Ghi Chú</label>
+                {{ don_thuoc_form.ghi_chu }}
+            </div>
+        </div>
+
+        <!-- Bảng thêm thuốc -->
+        <div class="section">
+            <h2>Danh Sách Thuốc</h2>
+            <table class="table" id="thuoc-table">
+                <thead>
+                    <tr>
+                        <th>Thuốc</th>
+                        <th>Số Lượng</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody id="thuoc-container">
+                    <tr>
+                        <td>{{ chi_tiet_form.thuoc }}</td>
+                        
+                        <td>{{ chi_tiet_form.so_luong }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger remove-thuoc">Xóa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" id="add-thuoc" class="btn btn-secondary">Thêm Thuốc</button>
+        </div>
+
+        <!-- Nút hành động -->
+        <div class="action-buttons">
+            <button type="submit" class="btn btn-success">Lưu Đơn Thuốc</button>
+            <button type="button" id="print-don-thuoc" class="btn btn-primary">In Đơn Thuốc</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Thêm thuốc mới vào bảng
+    document.getElementById('add-thuoc').addEventListener('click', function() {
+        const container = document.getElementById('thuoc-container');
+        const newRow = container.children[0].cloneNode(true);
+
+        // Xóa giá trị trong các trường input
+        newRow.querySelector('select').value = '';
+        newRow.querySelector('input').value = '';
+
+        container.appendChild(newRow);
+    });
+
+    // Xóa thuốc khỏi bảng
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('remove-thuoc')) {
+            const row = event.target.closest('tr');
+            const container = document.getElementById('thuoc-container');
+            if (container.children.length > 1) {
+                row.remove();
+            } else {
+                alert('Phải có ít nhất một loại thuốc trong đơn.');
+            }
+        }
+    });
+
+    // In đơn thuốc
+    document.getElementById('print-don-thuoc').addEventListener('click', function () {
+        const tenBenhNhan = document.querySelector('[name="ten_benh_nhan"]').value;
+        const ghiChu = document.querySelector('[name="ghi_chu"]').value;
+        const username = "{{ username }}"; // Lấy tên tài khoản từ context
+
+        // Lấy danh sách thuốc
+        const thuocRows = document.querySelectorAll('#thuoc-container tr');
+        let thuocHtml = '';
+        thuocRows.forEach((row, index) => {
+            const thuoc = row.querySelector('select').selectedOptions[0].textContent;
+            const soLuong = row.querySelector('input').value;
+            thuocHtml += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${thuoc}</td>
+                    <td>${soLuong}</td>
+                </tr>
+            `;
+        });
+
+        // Tạo nội dung in
+        const printContent = `
+            <html>
+            <head>
+                <title>Đơn Thuốc</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 20px;
+                    }
+                    h1 {
+                        text-align: center;
+                        color: #007bff;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    }
+                    table, th, td {
+                        border: 1px solid #ddd;
+                    }
+                    th, td {
+                        padding: 10px;
+                        text-align: left;
+                    }
+                    th {
+                        background-color: #007bff;
+                        color: white;
+                    }
+                    .info {
+                        margin-bottom: 20px;
+                    }
+                    .info p {
+                        margin: 5px 0;
+                    }
+                    .signature {
+                        margin-top: 50px;
+                        text-align: right;
+                    }
+                    .signature p {
+                        margin: 5px 0;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>Đơn Thuốc</h1>
+                <div class="info">
+                    <p><strong>Tên Bệnh Nhân:</strong> ${tenBenhNhan}</p>
+                    <p><strong>Ghi Chú:</strong> ${ghiChu}</p>
+                    <p><strong>Người Tạo Đơn:</strong> ${username}</p>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên Thuốc</th>
+                            <th>Số Lượng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${thuocHtml}
+                    </tbody>
+                </table>
+                <div class="signature">
+                    <p><strong>Chữ Ký:</strong></p>
+                    <p>_________________________</p>
+                </div>
+            </body>
+            </html>
+        `;
+
+        // Mở cửa sổ in
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(printContent);
+        printWindow.document.close();
+        printWindow.print();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,121 @@
+/* Toàn bộ trang */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #4facfe, #00f2fe); /* Gradient xanh biển */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container chính */
+.register-container {
+    background-color: #fff;
+    border-radius: 15px;
+    width: 400px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Hiệu ứng fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo */
+.register-logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Form đăng ký */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.register-form input {
+    width: 94%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-form input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Nút đăng ký */
+.register-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.register-form button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Đường kẻ ngang */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.divider span {
+    margin: 0 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Đăng nhập liên kết */
+.signup-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}

@@ -1,0 +1,62 @@
+<!-- filepath: d:\hoctap\pythonweb\health1\medical_supplies\templates\medical_supplies\danh_sach_don_thuoc.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'medical_supplies/danh_sach_don_thuoc.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Đơn Thuốc</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Danh Sách Đơn Thuốc</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tên Bệnh Nhân</th>
+                    <th>Ngày Tạo</th>
+                    <th>Tài Khoản Tạo</th>
+                    <th>Danh Sách Thuốc</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for don_thuoc in don_thuoc_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ don_thuoc.ten_benh_nhan }}</td>
+                    <td>{{ don_thuoc.ngay_tao }}</td>
+                    <td>{{ don_thuoc.user.username }}</td>
+                    <td>
+                        <ul>
+                            {% for chi_tiet in don_thuoc.chi_tiet.all %}
+                            <li>{{ chi_tiet.thuoc.ten_thuoc }} - Số lượng: {{ chi_tiet.so_luong }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

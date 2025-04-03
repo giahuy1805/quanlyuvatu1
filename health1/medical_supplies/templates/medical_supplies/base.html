@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Trang Web{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'medical_supplies/base.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Trang Chủ</a></li>
+                <li><a href="{% url 'tao_don_thuoc' %}">Tạo Đơn Thuốc</a></li>
+                <li><a href="{% url 'danh_sach_don_thuoc' %}">Danh Sách Đơn Thuốc</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Trang Web Quản Lý Đơn Thuốc</p>
+    </footer>
+</body>
+</html>

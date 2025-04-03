@@ -1,0 +1,36 @@
+<!-- filepath: d:\hoctap\pythonweb\health1\medical_supplies\templates\medical_supplies\login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="{% static 'medical_supplies/login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo">Medical Supplies</div>
+        
+        <!-- Hiển thị lỗi nếu có -->
+        {% if form.errors %}
+        <div class="error-message">
+            <p>Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.</p>
+        </div>
+        {% endif %}
+        
+        <form class="login-form" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Tên đăng nhập" required>
+            <input type="password" name="password" placeholder="Mật khẩu" required>
+            <button type="submit">Đăng Nhập</button>
+        </form>
+        <div class="divider">
+            <span>HOẶC</span>
+        </div>
+        <div class="signup-link">
+            <p>Chưa có tài khoản? <a href="{% url 'register' %}">Đăng ký ngay</a></p>
+        </div>
+    </div>
+</body>
+</html>

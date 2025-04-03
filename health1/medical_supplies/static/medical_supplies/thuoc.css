@@ -1,0 +1,95 @@
+/* Toàn bộ trang */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #4facfe, #00f2fe); /* Gradient xanh biển */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+/* Container chính */
+.container {
+    width: 500px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+}
+
+/* Tiêu đề */
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Form */
+form {
+    margin-top: 20px;
+}
+
+form .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form .form-control:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Nút */
+button, .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+button.btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+button.btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+a.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+a.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+}

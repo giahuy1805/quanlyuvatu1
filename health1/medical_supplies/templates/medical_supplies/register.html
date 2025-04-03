@@ -1,0 +1,30 @@
+<!-- filepath: d:\hoctap\pythonweb\health1\medical_supplies\templates\medical_supplies\register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký</title>
+    <link rel="stylesheet" href="{% static 'medical_supplies/register.css' %}">
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-logo">Medical Supplies</div>
+        <form class="register-form" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Tên đăng nhập" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Mật khẩu" required>
+            <input type="password" name="confirm_password" placeholder="Xác nhận mật khẩu" required>
+            <button type="submit">Đăng Ký</button>
+        </form>
+        <div class="divider">
+            <span>HOẶC</span>
+        </div>
+        <div class="signup-link">
+            <p>Đã có tài khoản? <a href="{% url 'login' %}">Đăng nhập ngay</a></p>
+        </div>
+    </div>
+</body>
+</html>

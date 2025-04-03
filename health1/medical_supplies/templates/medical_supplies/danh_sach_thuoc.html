@@ -1,0 +1,50 @@
+<!-- filepath: d:\hoctap\pythonweb\health1\medical_supplies\templates\medical_supplies\danh_sach_thuoc.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Thuốc</title>
+    <link rel="stylesheet" href="{% static 'medical_supplies/danh_sach_thuoc.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Danh Sách Thuốc</h1>
+        <a href="{% url 'them_thuoc' %}" class="btn btn-success">Thêm Thuốc</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tên Thuốc</th>
+                    <th>Mô Tả</th>
+                    <th>Giá</th>
+                    <th>Số Lượng</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for thuoc in danh_sach %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ thuoc.ten_thuoc }}</td>
+                    <td>{{ thuoc.mo_ta }}</td>
+                    <td>{{ thuoc.gia }}</td>
+                    <td>{{ thuoc.so_luong }}</td>
+                    <td>
+                        <a href="{% url 'sua_thuoc' thuoc.id %}" class="btn btn-warning btn-sm">Sửa</a>
+                        <a href="{% url 'xoa_thuoc' thuoc.id %}" class="btn btn-danger btn-sm">Xóa</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">Không có thuốc nào trong danh sách.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'index' %}" class="btn btn-primary">Quay lại Trang Chủ</a>
+    </div>
+    <script src="{% static 'medical_supplies/danh_sach_thuoc.js' %}"></script>
+</body>
+</html>

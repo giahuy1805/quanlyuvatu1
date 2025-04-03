@@ -1,0 +1,22 @@
+<!-- filepath: d:\hoctap\pythonweb\health1\medical_supplies\templates\medical_supplies\sua_thuoc.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'medical_supplies/thuoc.css' %}">
+    <title>Sửa Thuốc</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Sửa Thuốc</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-warning">Cập Nhật</button>
+            <a href="{% url 'danh_sach_thuoc' %}" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+</body>
+</html>
